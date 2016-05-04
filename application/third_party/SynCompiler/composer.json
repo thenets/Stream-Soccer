@@ -1,0 +1,11 @@
+{
+	"config":
+	{
+		"vendor-dir" : "libraries"
+	},
+
+    "require":
+    {
+		"matthiasmullie/minify": "^1.3"
+    }
+}
