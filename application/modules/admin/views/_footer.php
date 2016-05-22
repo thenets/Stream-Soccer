@@ -1,4 +1,7 @@
-
+	<div class="container">
+		<hr>
+		<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'SynIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
+	</div>
 
     <!-- SynCompiler : JS -->
     <script src="https://cdn.lfrs.sl/alloyui.com/3.0.1/aui/aui-min.js"></script>

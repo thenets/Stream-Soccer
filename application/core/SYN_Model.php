@@ -50,7 +50,7 @@ class SYN_Model extends CI_Model {
 	public function scaffold ($table_name, $id=0) {
 		$this->SYN_table_name = $table_name;
 
-		$this->getAttributesFromDatabase($table_name, $id);
+		$this->getAttributesFromDatabase($id);
 	}
 
 
@@ -70,7 +70,7 @@ class SYN_Model extends CI_Model {
     /*
         Get Attributes From Database to Create Object Vars
     */
-    private function getAttributesFromDatabase ($table_name, $id=0) {
+    private function getAttributesFromDatabase ($id=0) {
     	// Load database
         $this->load->database();
 
@@ -83,11 +83,16 @@ class SYN_Model extends CI_Model {
 			Get data from database
 		*/
         if ($id) {
+            // Get user with filter based on id_<className>
             $this->db->where('id_'.$this->config()->class_name, $id);
 
+            // Get result from database (a entry)
             $result = $this->db->get($this->config()->table_name)->result()[0];
 
-            $this->{'id_'.$this->config()->class_name} = $result->{'id_'.$this->config()->class_name};
+            // Create id_<className> class var
+            foreach ($result as $key => $value) {
+                $this->{$key} = $value;
+            }
         }
 
         /*
@@ -130,6 +135,6 @@ class SYN_Model extends CI_Model {
         Remove object from database
     */
     public function delete () {
-        $this->db->delete($this->config()->table_name, array('id_trainer' => $this->id_trainer));
+        $this->db->delete($this->config()->table_name, array('id_'.$this->config()->class_name => $this->{'id_'.$this->config()->class_name}));
     }
 }
