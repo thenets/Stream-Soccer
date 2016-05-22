@@ -33,7 +33,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Stream Soccer</a>
+      <a class="navbar-brand" href="<?=base_url('admin')?>">Stream Soccer</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

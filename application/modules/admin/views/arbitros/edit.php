@@ -19,7 +19,7 @@
 				</select>
 			</div>
 
-			<button type="submit" class="btn btn-success" disabled>Editar</button>
+			<button type="submit" class="btn" disabled>Editar</button>
 		</form>
 	</div>
 </div>
@@ -31,7 +31,7 @@
 		$('.to_remove').remove();
 		$("#tipo").find("option[value='<?=$arbitro->tipo?>']").attr("selected", true);
 		$('#tipo').prop("disabled", false);
-		$('button').prop("disabled", false);
+		$('button').prop("disabled", false).addClass('btn-success');
 	}, 1000);
 })();
 </script>
