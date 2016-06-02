@@ -17,4 +17,16 @@ class Equipe extends SYN_Model {
 		
 		return $all;
 	}
+	
+	public static function getEquipeById($id_equipe){
+		$ci =& get_instance();
+		$result = $ci->db->get_where('equipes',['id_equipe'=>$id_equipe])->result();
+		$all = null;
+		foreach ($result as $key => $value) {
+			$all = new Equipe($value->id_equipe);
+		}
+		
+		return $all;
+		
+	}
 }
