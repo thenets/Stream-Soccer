@@ -20,7 +20,7 @@
 			<tbody>	
 				<?php foreach ($jogadores as $key => $value): ?>
 					<tr>
-						<th><?php echo $value->id_equipe ?></th>
+						<th><?php echo $value->id_jogador ?></th>
 						<td><?php echo $value->nome ?></td>
 						<td><?php echo $value->posicao ?></td>
 
