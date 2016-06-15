@@ -95,10 +95,10 @@ $equipes[2] = new Equipe($jogo->equipe_2);
 										<td><?php echo $jogador->nome ?></td>
 										<td><?php echo $jogador->posicao ?></td>
 										<td>
-											<a href="<?=base_url('admin/sumulas/falta/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary btn-xs">Falta</a>
-											<a href="<?=base_url('admin/sumulas/gol/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary btn-xs">Gol</a>
-											<a href="<?=base_url('admin/sumulas/impedimento/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary btn-xs">Impedimento</a>
-											<a href="<?=base_url('admin/sumulas/substituicao/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary btn-xs">Substituição</a>
+											<a href="<?=base_url('admin/sumulas/falta/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary btn-xs" title="Falta"><i class="fa fa-hand-stop-o"></i></a>
+											<a href="<?=base_url('admin/sumulas/gol/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary btn-xs" title="Gol"><i class="fa fa-soccer-ball-o"></i></a>
+											<a href="<?=base_url('admin/sumulas/impedimento/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary btn-xs" title="Impedimeto"><i class="fa fa-warning"></i></a>
+											<a href="<?=base_url('admin/sumulas/substituicao/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary btn-xs" title="Substituição"><i class="fa fa-exchange"></i></a>
 										</td>
 									</tr>
 								<?php endforeach ?>
@@ -154,9 +154,13 @@ $(document).ready(function(){
 		});
 
 		// Envia
-		$('#input_escalacao_1').attr('value', JSON.stringify(equipe_1));
-		$('#input_escalacao_2').attr('value', JSON.stringify(equipe_2));
-		$('#escalacao_form').submit();
+		if(equipe_1.length < 15 || equipe_2.length < 15){
+			alert("Os times devem ter no minimo 15 jogadores na escalação");
+		}else{
+			$('#input_escalacao_1').attr('value', JSON.stringify(equipe_1));
+			$('#input_escalacao_2').attr('value', JSON.stringify(equipe_2));
+			$('#escalacao_form').submit();
+		}
 	});
 });
 </script>
