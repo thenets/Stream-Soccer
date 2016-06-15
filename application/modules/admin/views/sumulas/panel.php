@@ -59,22 +59,24 @@ $equipes[2] = new Equipe($jogo->equipe_2);
 	    </div>
 	  </div>
 
-	  <!-- Faltas / Substituições / Gols -->
-	  <div class="panel panel-default">
-	    <div class="panel-heading" role="tab" id="headingTwo">
-	      <h4 class="panel-title">
-	        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-	          Ações
-	        </a>
-	      </h4>
-	    </div>
-	    <div id="collapseTwo" class="panel-collapse collapse <?php echo count($sumula->SYN_Events->escalacao) < 3 ? 'in' : '' ?>" role="tabpanel" aria-labelledby="headingTwo">
-	      <div class="panel-body">
-	        <!-- EQUIPES -->
-	        <form action="<?=base_url('admin/sumulas/index/1')?>" method="POST" id="escalacao_form">
-	      		<?php for ($i=1; $i < 3; $i++): ?>
-		        	<input type="hidden" name="equipe_<?=$i?>" id="input_escalacao_<?=$i?>">
+	    <!-- EVENTOS | Faltas / Substituições / Gols -->
+	    <?php if(count($sumula->SYN_Events->escalacao) == 2): ?> 
+		  <div class="panel panel-default">
+		    <div class="panel-heading" role="tab" id="headingTwo">
+		      <h4 class="panel-title">
+		        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+		          Ações
+		        </a>
+		      </h4>
+		    </div>
+		    <div id="collapseTwo" class="panel-collapse collapse <?php echo count($sumula->SYN_Events->escalacao) < 3 ? 'in' : '' ?>" role="tabpanel" aria-labelledby="headingTwo">
+		      <div class="panel-body">
+		        <!-- EQUIPES -->
+		        <form action="<?=base_url('admin/sumulas/index/1')?>" method="POST" id="escalacao_form">
+		      		<?php for ($i=1; $i < 3; $i++): ?>
+			        	<input type="hidden" name="equipe_<?=$i?>" id="input_escalacao_<?=$i?>">
 
+<<<<<<< HEAD
 			        <div class="col-sm-6">
 			        	<img src="<?=$equipes[$i]->escudo?>" height="50" class="pull-right">
 			        	<h3><?=$equipes[$i]->nome?></h3>
@@ -100,16 +102,44 @@ $equipes[2] = new Equipe($jogo->equipe_2);
 											<a href="<?=base_url('admin/sumulas/impedimento/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary btn-xs" title="Impedimeto"><i class="fa fa-warning"></i></a>
 											<a href="<?=base_url('admin/sumulas/substituicao/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary btn-xs" title="Substituição"><i class="fa fa-exchange"></i></a>
 										</td>
+=======
+				        <div class="col-sm-6">
+				        	<img src="<?=$equipes[$i]->escudo?>" height="50" class="pull-right">
+				        	<h3><?=$equipes[$i]->nome?></h3>
+				        	<hr>
+							<table class="table table-striped table-bordered equipe_<?=$i?>">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Nome</th>
+										<th>Posição</th>
+										<th><span class="hidden">(actions)</span></th>
+>>>>>>> 797a37b4e19444c8f01e0ebd2b83acf2dfaaa386
 									</tr>
-								<?php endforeach ?>
-							</tbody>
-						</table>
-			        </div>
-		    	<?php endfor ?>
-		    </form>
-	      </div>
-	    </div>
-	  </div>
+								</thead>
+								<tbody>	
+									<?php foreach ($sumula->getEscalacao(($i-1)) as $key => $jogador):  ?>
+										<tr data-jogador="<?php echo $jogador->id_jogador ?>">
+											<th><?php echo $jogador->id_jogador ?></th>
+											<td><?php echo $jogador->nome ?></td>
+											<td><?php echo $jogador->posicao ?></td>
+											<td>
+												<a href="<?=base_url('admin/sumulas/falta/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary btn-xs">Falta</a>
+												<a href="<?=base_url('admin/sumulas/gol/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary btn-xs">Gol</a>
+												<a href="<?=base_url('admin/sumulas/impedimento/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary btn-xs">Impedimento</a>
+												<a href="<?=base_url('admin/sumulas/substituicao/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary btn-xs">Substituição</a>
+											</td>
+										</tr>
+									<?php endforeach ?>
+								</tbody>
+							</table>
+				        </div>
+			    	<?php endfor ?>
+			    </form>
+		      </div>
+		    </div>
+		  </div>
+		<?php endif ?>
 
 	  <!-- Finalizar -->
 	  <div class="panel panel-default">
