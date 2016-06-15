@@ -28,7 +28,7 @@ class Sumulas extends CI_Controller {
 		$this->load->view('admin/_footer');
 	}
 
-	public function falta ($id_jogo) {
+	public function falta ($id_jogo,$id_jogador) {
 		$this->load->model('jogador');
 		$this->load->model('equipe');
 		$this->load->model('sumula');
@@ -38,7 +38,7 @@ class Sumulas extends CI_Controller {
 		if(isset($_POST['tempo'])){
 			
 			$tempo = $_POST['tempo'];
-			$jogador_cometeu_falta = $_POST['jogador_cometeu_falta'];
+			$jogador_cometeu_falta = $id_jogador;
 			$jogador_sofreu_falta = $_POST['jogador_sofreu_falta'];
 			$cartao = $_POST['cartao'];
 			$sumula->evento_falta($tempo,$jogador_cometeu_falta,$jogador_sofreu_falta,$cartao);
