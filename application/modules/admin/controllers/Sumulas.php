@@ -42,8 +42,17 @@ class Sumulas extends CI_Controller {
 		echo "<pre>".print_r($_POST)."</pre>";
 	}
 	
-	public function gol () {
-		
+	public function gol ($id_jogo) {
+		$sumula = new Sumula($id_jogo);
+		if(isset($_POST['tempo'])){
+			$tempo = $_POST['tempo'];
+			$jogador_q_fez_o_gol = $_POST['jogador_q_fez_o_gol'];
+			$contra = ($_POST['contra']) ? true : false;
+			$sumula->evento_gol($tempo, $jogador_q_fez_o_gol, $contra);
+			redirect(base_url('admin/sumulas/index/'.$id_jogo));
+		}
+		echo "Erro: <br>";
+		echo "<pre>".print_r($_POST)."</pre>";
 	}
 	public function impedimento () {
 		
@@ -53,6 +62,10 @@ class Sumulas extends CI_Controller {
 	}
 	
 	public function cartao(){
+		
+	}
+	
+	public function finalizar(){
 		
 	}
 
