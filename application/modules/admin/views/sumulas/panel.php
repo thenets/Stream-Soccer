@@ -76,31 +76,6 @@ $equipes[2] = new Equipe($jogo->equipe_2);
 		      		<?php for ($i=1; $i < 3; $i++): ?>
 			        	<input type="hidden" name="equipe_<?=$i?>" id="input_escalacao_<?=$i?>">
 
-			        <div class="col-sm-6">
-			        	<img src="<?=$equipes[$i]->escudo?>" height="50" class="pull-right">
-			        	<h3><?=$equipes[$i]->nome?></h3>
-			        	<hr>
-						<table class="table table-striped table-bordered equipe_<?=$i?>">
-							<thead>
-								<tr>
-									<th>#</th>
-									<th>Nome</th>
-									<th>Posição</th>
-									<th><span class="hidden">(actions)</span></th>
-								</tr>
-							</thead>
-							<tbody>	
-								<?php foreach ($sumula->getEscalacao(($i-1)) as $key => $jogador):  ?>
-									<tr data-jogador="<?php echo $jogador->id_jogador ?>">
-										<th><?php echo $jogador->id_jogador ?></th>
-										<td><?php echo $jogador->nome ?></td>
-										<td><?php echo $jogador->posicao ?></td>
-										<td>
-											<a href="<?=base_url('admin/sumulas/falta/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary btn-xs" title="Falta"><i class="fa fa-hand-stop-o"></i></a>
-											<a href="<?=base_url('admin/sumulas/gol/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary btn-xs" title="Gol"><i class="fa fa-soccer-ball-o"></i></a>
-											<a href="<?=base_url('admin/sumulas/impedimento/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary btn-xs" title="Impedimeto"><i class="fa fa-warning"></i></a>
-											<a href="<?=base_url('admin/sumulas/substituicao/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary btn-xs" title="Substituição"><i class="fa fa-exchange"></i></a>
-										</td>
 				        <div class="col-sm-6">
 				        	<img src="<?=$equipes[$i]->escudo?>" height="50" class="pull-right">
 				        	<h3><?=$equipes[$i]->nome?></h3>
@@ -121,10 +96,10 @@ $equipes[2] = new Equipe($jogo->equipe_2);
 											<td><?php echo $jogador->nome ?></td>
 											<td><?php echo $jogador->posicao ?></td>
 											<td>
-												<a href="<?=base_url('admin/sumulas/falta/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary btn-xs">Falta</a>
-												<a href="<?=base_url('admin/sumulas/gol/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary btn-xs">Gol</a>
-												<a href="<?=base_url('admin/sumulas/impedimento/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary btn-xs">Impedimento</a>
-												<a href="<?=base_url('admin/sumulas/substituicao/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary btn-xs">Substituição</a>
+												<a href="<?=base_url('admin/sumulas/falta/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary btn-xs" title="Falta"><i class="fa fa-hand-stop-o"></i></a>
+												<a href="<?=base_url('admin/sumulas/gol/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary btn-xs" title="Gol"><i class="fa fa-soccer-ball-o"></i></a>
+												<a href="<?=base_url('admin/sumulas/impedimento/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary btn-xs" title="Impedimeto"><i class="fa fa-warning"></i></a>
+												<a href="<?=base_url('admin/sumulas/substituicao/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary btn-xs" title="Substituição"><i class="fa fa-exchange"></i></a>
 											</td>
 										</tr>
 									<?php endforeach ?>
