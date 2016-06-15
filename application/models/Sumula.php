@@ -12,6 +12,7 @@ class Sumula extends SYN_Model {
 			if(count($this->db->get('sumulas')->result()) == 0) {
 				$log = new stdClass();
 				$log->escalacao = [];
+				$log->eventos = [];
 
 				$data = array(
 			        'id_jogo' => $jogo->id_jogo,
@@ -28,7 +29,7 @@ class Sumula extends SYN_Model {
 			$id_sumula = $this->db->get('sumulas')->result()[0]->id_sumula;
 
 			$this->scaffold('sumulas', $id_sumula);
-			$this->SYN_Events = json_decode($this->log);
+			$this->SYN_Log = json_decode($this->log);
 		}
 
 	}
@@ -49,7 +50,7 @@ class Sumula extends SYN_Model {
 		$this->load->model('jogador');
 
 		$equipe = [];
-		foreach ($this->SYN_Events->escalacao[$time] as $key => $jogador) {
+		foreach ($this->SYN_Log->escalacao[$time] as $key => $jogador) {
 			$equipe[] = new Jogador($jogador);
 		}
 
@@ -57,13 +58,13 @@ class Sumula extends SYN_Model {
 	}
 
 	public function updateLog () {
-		$this->log = json_encode($this->SYN_Events);
+		$this->log = json_encode($this->SYN_Log);
 		$this->save();
 	}
 
 	public function addEscalacao ($array_new_escalacao) {
-		if(count($this->SYN_Events) < 3) {
-			$this->SYN_Events->escalacao[] = $array_new_escalacao;
+		if(count($this->SYN_Log) < 3) {
+			$this->SYN_Log->escalacao[] = $array_new_escalacao;
 		}
 
 		$this->updateLog();

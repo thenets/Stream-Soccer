@@ -17,7 +17,7 @@ $equipes[2] = new Equipe($jogo->equipe_2);
 	        </a>
 	      </h4>
 	    </div>
-	    <div id="escalacao" class="panel-collapse collapse <?php echo count($sumula->SYN_Events->escalacao) < 3 ? '' : 'in' ?>" role="tabpanel" aria-labelledby="headingOne">
+	    <div id="escalacao" class="panel-collapse collapse <?php echo count($sumula->SYN_Log->escalacao) < 3 ? '' : 'in' ?>" role="tabpanel" aria-labelledby="headingOne">
 	      <div class="panel-body row">
 	        <!-- EQUIPES -->
 	        <form action="<?=base_url('admin/sumulas/index/1')?>" method="POST" id="escalacao_form">
@@ -60,7 +60,7 @@ $equipes[2] = new Equipe($jogo->equipe_2);
 	  </div>
 
 	    <!-- EVENTOS | Faltas / Substituições / Gols -->
-	    <?php if(count($sumula->SYN_Events->escalacao) == 2): ?> 
+	    <?php if(count($sumula->SYN_Log->escalacao) == 2): ?> 
 		  <div class="panel panel-default">
 		    <div class="panel-heading" role="tab" id="headingTwo">
 		      <h4 class="panel-title">
@@ -69,7 +69,7 @@ $equipes[2] = new Equipe($jogo->equipe_2);
 		        </a>
 		      </h4>
 		    </div>
-		    <div id="collapseTwo" class="panel-collapse collapse <?php echo count($sumula->SYN_Events->escalacao) < 3 ? 'in' : '' ?>" role="tabpanel" aria-labelledby="headingTwo">
+		    <div id="collapseTwo" class="panel-collapse collapse <?php echo count($sumula->SYN_Log->escalacao) < 3 ? 'in' : '' ?>" role="tabpanel" aria-labelledby="headingTwo">
 		      <div class="panel-body">
 		        <!-- EQUIPES -->
 		        <form action="<?=base_url('admin/sumulas/index/1')?>" method="POST" id="escalacao_form">

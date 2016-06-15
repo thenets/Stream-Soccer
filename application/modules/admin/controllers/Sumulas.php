@@ -10,8 +10,9 @@ class Sumulas extends CI_Controller {
 		$sumula = new Sumula($id_jogo);
 
 		// Recebe escalação
+		// ===================================
 		if (isset($_POST['equipe_1'])) {
-			$sumula->SYN_Events->escalacao = []; // HARD
+			$sumula->SYN_Log->escalacao = []; // HARD
 			$sumula->addEscalacao(json_decode($_POST['equipe_1']));
 			$sumula->addEscalacao(json_decode($_POST['equipe_2']));
 		}
@@ -23,10 +24,6 @@ class Sumulas extends CI_Controller {
 		$this->load->view('admin/_header');
 		$this->load->view('admin/sumulas/panel', $data);
 		$this->load->view('admin/_footer');
-	}
-
-	public function render () {
-		$this->load->view('admin/sumulas/_main');
 	}
 
 	public function falta () {
