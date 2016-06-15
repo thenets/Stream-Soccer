@@ -18,9 +18,22 @@ class Jogo extends SYN_Model {
 		return $all;
     }
     
-    public static function getAllByCampeonato($id){
+    public static function getAllByCampeonato($id_campeonato){
         $ci =& get_instance();
-        $ci->db->where('id_campeonato', $id);
+        $ci->db->where('id_campeonato', $id_campeonato);
+		$result = $ci->db->get('jogos')->result();
+
+		$all = [];
+		foreach ($result as $key => $value) {
+			$all[] = new Jogo($value->id_jogo);
+		}
+		
+		return $all;
+    }
+    
+    public static function getEmAndamento(){
+        $ci =& get_instance();
+        $ci->db->where('finalizado', '0');
 		$result = $ci->db->get('jogos')->result();
 
 		$all = [];

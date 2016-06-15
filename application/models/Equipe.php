@@ -28,7 +28,7 @@ class Equipe extends SYN_Model {
 		return $all;
 	}
 	
-	public static function getEquipeById($id_equipe){
+	public static function getEquipeById ($id_equipe){
 		$ci =& get_instance();
 		$result = $ci->db->get_where('equipes',['id_equipe'=>$id_equipe])->result();
 		$all = null;
@@ -37,6 +37,20 @@ class Equipe extends SYN_Model {
 		}
 		
 		return $all;
-		
+	}
+
+	public function getJogadores () {
+		$this->load->model('jogador');
+
+		$jogadores = [];
+
+		$this->db->where('id_equipe', $this->id_equipe);
+		$result = $this->db->get('jogadores')->result();
+
+		foreach ($result as $key => $jogador) {
+			$jogadores[] = new Jogador($jogador->id_jogador);
+		}
+
+		return $jogadores;
 	}
 }

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Máquina: localhost
--- Data de Criação: 15-Jun-2016 às 08:37
+-- Data de Criação: 15-Jun-2016 às 13:53
 -- Versão do servidor: 5.5.49-0ubuntu0.14.04.1
 -- versão do PHP: 5.5.9-1ubuntu4.17
 
@@ -183,26 +183,34 @@ INSERT INTO `jogos` (`id_jogo`, `id_campeonato`, `hora_inicio`, `hora_fim`, `dat
 --
 
 CREATE TABLE IF NOT EXISTS `sumulas` (
-  `id_sumula` int(11) NOT NULL,
-  `id_jogo` int(11) NOT NULL AUTO_INCREMENT,
+  `id_sumula` int(11) NOT NULL AUTO_INCREMENT,
+  `id_jogo` int(11) NOT NULL,
   `log` text,
-  `id_equipe1` int(11) NOT NULL,
-  `id_equipe2` int(11) NOT NULL,
-  `id_arbitro` int(11) NOT NULL,
-  PRIMARY KEY (`id_sumula`,`id_jogo`,`id_equipe1`,`id_equipe2`,`id_arbitro`),
+  `equipe_1` int(11) NOT NULL,
+  `equipe_2` int(11) NOT NULL,
+  `id_arbitro` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_sumula`,`id_jogo`,`equipe_1`,`equipe_2`),
+  UNIQUE KEY `id_jogo_UNIQUE` (`id_jogo`),
   KEY `fk_sumula_jogo1_idx` (`id_jogo`),
-  KEY `fk_sumula_equipe1_idx` (`id_equipe1`),
-  KEY `fk_sumula_equipe2_idx` (`id_equipe2`),
-  KEY `fk_sumula_arbitro1_idx` (`id_arbitro`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  KEY `fk_sumula_equipe1_idx` (`equipe_1`),
+  KEY `fk_sumula_equipe2_idx` (`equipe_2`),
+  KEY `fk_sumulas_arbitros1_idx` (`id_arbitro`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Extraindo dados da tabela `sumulas`
+--
+
+INSERT INTO `sumulas` (`id_sumula`, `id_jogo`, `log`, `equipe_1`, `equipe_2`, `id_arbitro`) VALUES
+(3, 1, '{"escalacao":[]}', 1, 2, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `sumulasView`
+-- Estrutura da tabela `sumulas_view`
 --
 
-CREATE TABLE IF NOT EXISTS `sumulasView` (
+CREATE TABLE IF NOT EXISTS `sumulas_view` (
   `id_jogo` int(11) NOT NULL AUTO_INCREMENT,
   `id_sumula` int(11) NOT NULL,
   `log` varchar(255) DEFAULT NULL,
@@ -239,15 +247,15 @@ ALTER TABLE `jogos`
 -- Limitadores para a tabela `sumulas`
 --
 ALTER TABLE `sumulas`
-  ADD CONSTRAINT `fk_sumula_arbitro1` FOREIGN KEY (`id_arbitro`) REFERENCES `arbitros` (`id_arbitro`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_sumula_equipe1` FOREIGN KEY (`id_equipe1`) REFERENCES `equipes` (`id_equipe`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_sumula_equipe2` FOREIGN KEY (`id_equipe2`) REFERENCES `equipes` (`id_equipe`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_sumulas_arbitros1` FOREIGN KEY (`id_arbitro`) REFERENCES `arbitros` (`id_arbitro`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_sumula_equipe1` FOREIGN KEY (`equipe_1`) REFERENCES `equipes` (`id_equipe`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_sumula_equipe2` FOREIGN KEY (`equipe_2`) REFERENCES `equipes` (`id_equipe`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_sumula_jogo1` FOREIGN KEY (`id_jogo`) REFERENCES `jogos` (`id_jogo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limitadores para a tabela `sumulasView`
+-- Limitadores para a tabela `sumulas_view`
 --
-ALTER TABLE `sumulasView`
+ALTER TABLE `sumulas_view`
   ADD CONSTRAINT `fk_sumula_jogo10` FOREIGN KEY (`id_jogo`) REFERENCES `jogos` (`id_jogo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
