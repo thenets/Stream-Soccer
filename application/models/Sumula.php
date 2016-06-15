@@ -173,6 +173,20 @@ class Sumula extends SYN_Model {
 
 		$this->addEvento($new_cartao);
 	}
+	
+	/*
+		Add Evento Cartão
+	*/
+	public function evento_finalizar_jogo ($tempo) {
+		$new_finalizado = array(
+			'key' 		=> md5(time().' '.microtime()),
+			'tipo' 		=> 'finalizado', // Tipo
+			'tempo' 	=> $tempo,
+			'atributos' => array() // Atributos (array)
+		);
+
+		$this->addEvento($new_finalizado);
+	}
 
 
 	/*
