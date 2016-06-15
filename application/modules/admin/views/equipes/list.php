@@ -25,7 +25,7 @@
 							<a href="<?=base_url('admin/equipes/edit/'  .$value->id_equipe)?>" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
 							<a href="<?=base_url('admin/equipes/remove/'.$value->id_equipe)?>" class="btn btn-xs btn-warning"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
 							<a href="<?=base_url('admin/equipes/'.$value->id_equipe).'/jogadores'?>" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-user" aria-hidden="true"
-							data-toggle="tooltip" data-placement="top" title="Jogadores do time <?= $value->nome ?>"></span></a>
+							data-toggle="tooltip" data-placement="top" title="Jogadores do time <?= $value->nome ?>"></span> Jogadores</a>
 						</td>
 					</tr>
 				<?php endforeach ?>

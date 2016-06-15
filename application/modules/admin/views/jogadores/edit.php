@@ -1,5 +1,5 @@
 <div class="container">
-	<h2>Cadastrar novo Jogador</h2>
+	<h2>Editar Jogador</h2>
 	
 
 	<div class="row">

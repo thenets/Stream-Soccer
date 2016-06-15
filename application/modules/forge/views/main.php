@@ -89,7 +89,7 @@
         </div>
 
         <div class="mdl-cell mdl-cell--4-col">
-          <?php $this->load->view('forge/_cache') ?>
+          <?php //$this->load->view('forge/_cache') ?>
         </div>
 
 			</div>

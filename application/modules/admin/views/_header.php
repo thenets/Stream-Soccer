@@ -39,13 +39,13 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="<?php echo base_url('admin') ?>">Home</a></li>
         <li><a href="<?php echo base_url('admin/campeonatos') ?>">Campeonatos</a></li>
         <li><a href="<?php echo base_url('admin/equipes') ?>">Equipes</a></li>
         <li><a href="<?php echo base_url('admin/arbitros') ?>">Arbitros</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
+        <li><a href="<?php echo base_url() ?>" target="_blank">Cliente</a></li>
         <li><a href="<?php echo base_url() ?>">Sair</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->

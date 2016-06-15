@@ -52,7 +52,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+// Equipes -> Jogadores
 $route['admin/equipes/(:num)/jogadores'] = 'admin/jogadores/jogador_by_equipe/$1';
 $route['admin/equipes/(:num)/jogadores/add'] = 'admin/jogadores/add/$1';
 $route['admin/equipes/(:num)/jogadores/edit/(:num)'] = 'admin/jogadores/edit/$1/$2';
 $route['admin/equipes/(:num)/jogadores/remove/(:num)'] = 'admin/jogadores/remove/$1/$2';
+
+// Campeonatos -> Jogos
+$route['admin/campeonatos/(:num)/jogos'] = 'admin/jogos/index/$1';
+$route['admin/campeonatos/(:num)/jogos/add'] = 'admin/jogos/add/$1';
+$route['admin/campeonatos/(:num)/jogos/edit/(:num)'] = 'admin/jogos/edit/$1/$2';
+$route['admin/campeonatos/(:num)/jogos/remove/(:num)'] = 'admin/jogos/remove/$1/$2';

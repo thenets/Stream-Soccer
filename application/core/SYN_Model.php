@@ -108,25 +108,33 @@ class SYN_Model extends CI_Model {
         Insert or update object into database
     */
     public function save () {
+        $to_be_saved = clone $this;
+
+        // Remove empty data
+        foreach (get_object_vars($to_be_saved) as $key => &$value) {
+            if(empty($value))
+                unset($to_be_saved->{$key});
+        }
+
     	// Create Obj to manipulated
     	$db_obj = new stdClass();
-    	foreach (get_object_vars($this) as $key => $value) {
+    	foreach (get_object_vars($to_be_saved) as $key => $value) {
     		if(substr($key, 0, 4) != 'SYN_')
     			$db_obj->{$key} = $value;
     	}
 
         // Update
         // If has a PK 'id_nameclass'
-        if ( isset($this->{'id_'.$this->config()->class_name}) ) {
-            $this->db->update(
-            	$this->config()->table_name, 
-            	$db_obj, array('id_'.$this->config()->class_name => $this->{'id_'.$this->config()->class_name})
+        if ( isset($to_be_saved->{'id_'.$to_be_saved->config()->class_name}) ) {
+            $to_be_saved->db->update(
+            	$to_be_saved->config()->table_name, 
+            	$db_obj, array('id_'.$to_be_saved->config()->class_name => $to_be_saved->{'id_'.$to_be_saved->config()->class_name})
             );
         }
 
         // Save / Insert into database
         else {
-            $this->db->insert($this->config()->table_name, $db_obj);
+            $to_be_saved->db->insert($this->config()->table_name, $db_obj);
         }
     }
 

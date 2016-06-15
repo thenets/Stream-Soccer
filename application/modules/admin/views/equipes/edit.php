@@ -15,7 +15,7 @@
 				<input type="number" class="form-control" name="titulos" id="titulos" value="<?= $equipe->titulos?>" min="0">
 			</div>
 
-			<button type="submit" class="btn">Editar</button>
+			<button type="submit" class="btn btn-primary">Editar</button>
 		</form>
 	</div>
 </div>

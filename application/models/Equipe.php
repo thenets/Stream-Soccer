@@ -4,6 +4,8 @@ class Equipe extends SYN_Model {
 	public function __construct ($id=0) {
 		// @SYN_Model::scaffold ($table_name, $id, <optional : className>)
 		$this->scaffold('equipes', $id);
+
+		$this->escudo = base_url('public/img/equipes/'.$id.'.png');
 	}
 
 	public static function getAll () {
@@ -14,6 +16,14 @@ class Equipe extends SYN_Model {
 		foreach ($result as $key => $value) {
 			$all[] = new Equipe($value->id_equipe);
 		}
+
+		// Remove "N/D"
+		foreach ($all as $key => &$equipe) {
+			if($equipe->nome == 'N/D' || empty($equipe->nome)) {
+				unset($all[$key]);
+			}
+		}
+		sort($all);
 		
 		return $all;
 	}

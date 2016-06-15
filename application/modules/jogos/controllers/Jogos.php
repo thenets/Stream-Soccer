@@ -7,6 +7,6 @@ class Jogos extends CI_Controller {
 		$arbitro = new Arbitro();
 		$arbitro->nome = 'Luiz';
 		$arbitro->tipo = 'principal';
-		$arbitro->save();
+		//$arbitro->save();
 	}
 }
