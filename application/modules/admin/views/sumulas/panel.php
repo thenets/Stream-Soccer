@@ -72,7 +72,6 @@ $equipes[2] = new Equipe($jogo->equipe_2);
 		    <div id="collapseTwo" class="panel-collapse collapse <?php echo count($sumula->SYN_Log->escalacao) < 3 ? 'in' : '' ?>" role="tabpanel" aria-labelledby="headingTwo">
 		      <div class="panel-body">
 		        <!-- EQUIPES -->
-		        <form action="<?=base_url('admin/sumulas/index/1')?>" method="POST" id="escalacao_form">
 		      		<?php for ($i=1; $i < 3; $i++): ?>
 			        	<input type="hidden" name="equipe_<?=$i?>" id="input_escalacao_<?=$i?>">
 
@@ -96,10 +95,11 @@ $equipes[2] = new Equipe($jogo->equipe_2);
 											<td><?php echo $jogador->nome ?></td>
 											<td><?php echo $jogador->posicao ?></td>
 											<td>
-												<a href="<?=base_url('admin/sumulas/falta/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary btn-xs" title="Falta"><i class="fa fa-hand-stop-o"></i></a>
-												<a href="<?=base_url('admin/sumulas/gol/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary btn-xs" title="Gol"><i class="fa fa-soccer-ball-o"></i></a>
-												<a href="<?=base_url('admin/sumulas/impedimento/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary btn-xs" title="Impedimeto"><i class="fa fa-warning"></i></a>
-												<a href="<?=base_url('admin/sumulas/substituicao/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary btn-xs" title="Substituição"><i class="fa fa-exchange"></i></a>
+												<button data-url="<?=base_url('admin/sumulas/falta/'.$sumula->id_jogo.'/'.$jogador->id_jogador)?>" class="btn-falta btn btn-primary btn-xs" title="Falta"><i class="fa fa-hand-stop-o"></i></button>
+												<button data-url="<?=base_url('admin/sumulas/cartao/'.$sumula->id_jogo.'/'.$jogador->id_jogador)?>" class="btn-cartao btn btn-primary btn-xs" title="Cartão"><i class="fa fa-clone"></i></button>
+												<button data-url="<?=base_url('admin/sumulas/gol/'.$sumula->id_jogo.'/'.$jogador->id_jogador)?>" class="btn-gol btn btn-primary btn-xs" title="Gol"><i class="fa fa-soccer-ball-o"></i></button>
+												<button data-url="<?=base_url('admin/sumulas/impedimento/'.$sumula->id_jogo.'/'.$jogador->id_jogador)?>" class="btn-impedimento btn btn-primary btn-xs" title="Impedimeto"><i class="fa fa-warning"></i></button>
+												<button data-url="<?=base_url('admin/sumulas/substituicao/'.$sumula->id_jogo.'/'.$jogador->id_jogador)?>" class="btn-substituicao btn btn-primary btn-xs" title="Substituição"><i class="fa fa-exchange"></i></button>
 											</td>
 										</tr>
 									<?php endforeach ?>
@@ -107,33 +107,103 @@ $equipes[2] = new Equipe($jogo->equipe_2);
 							</table>
 				        </div>
 			    	<?php endfor ?>
-			    </form>
 		      </div>
 		    </div>
 		  </div>
-		<?php endif ?>
 
-	  <!-- Finalizar -->
-	  <div class="panel panel-default">
-	    <div class="panel-heading" role="tab" id="headingThree">
-	      <h4 class="panel-title">
-	        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-	          Collapsible Group Item #3
-	        </a>
-	      </h4>
-	    </div>
-	    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-	      <div class="panel-body">
-	        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-	      </div>
-	    </div>
-	  </div>
+		  <!-- Finalizar -->
+		  <div class="panel panel-default">
+		    <div class="panel-heading" role="tab" id="headingThree">
+		      <h4 class="panel-title">
+		        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+		          Finalizar
+		        </a>
+		      </h4>
+		    </div>
+		    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+		      <div class="panel-body">
+		      	<a href="<?=base_url('admin/sumulas/substituicao/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary" title="Finalizar"><i class="fa fa-hourglass-end"></i> Finalizar</a>  
+		      </div>
+		    </div>
+		  </div>
+
+		<?php endif ?>
 	</div>
 </div>
 
 
-<script type="text/javascript">
+<!-- 
+# MODAL para os eventos
+===================================================
+ -->
+<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel">
+	<form method="post">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="formModalLabel">Titulo</h4>
+	      </div>
+	      <div class="modal-body">
+				
+	      </div>
+	      <div class="modal-footer">
+	        <button type="submit" class="btn btn-primary">Enviar</button>
+	      </div>
+	    </div>
+	  </div>
+	</form>
+</div>
+	
+	<!-- 
+	# FORM Gol
+	===================================================
+	-->
+	<div id="form-gol">
+		<div class="form-group">
+			<label for="tempo">Tempo</label>
+			<input type="number" class="form-control" name="tempo" id="tempo" value="0" placeholder="" min='0' max='50'>
+		</div>
+		<div class="checkbox">
+			<label>
+				<input type="checkbox" name="contra" value="1"> Contra?
+			</label>
+		</div>
+	</div>
 
+
+
+
+<script type="text/javascript">
+/*
+	Eventos (MODAL)
+	===================================================
+*/
+$(document).ready(function(){
+	$('.btn-gol').on('click', function(){
+		// Obtem URL do botão
+		var url = $(this).data('url');
+
+		// Define url no form e titulo
+		$('#formModal form').attr('action', url);
+		$('#formModal .modal-title').html('Gol');
+
+		// Move controles para o form
+		$('#formModal form .modal-body').html('');
+		$('#form-gol').clone().appendTo('#formModal form .modal-body');
+
+		// Mostra modal
+		$('#formModal').modal('show');
+
+	});
+});
+
+
+
+/*
+	Escalação
+	===================================================
+*/
 $(document).ready(function(){
 	$('.equipe_1.table-hover tr, .equipe_2.table-hover tr').on('click', function() {
 	console.log('aa');
@@ -165,4 +235,6 @@ $(document).ready(function(){
 		}
 	});
 });
+
+
 </script>

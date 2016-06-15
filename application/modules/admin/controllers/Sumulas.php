@@ -2,10 +2,12 @@
 
 
 class Sumulas extends CI_Controller {
+
 	public function index ($id_jogo) {
-		$this->load->model('jogo');
+		$this->load->model('jogador');
 		$this->load->model('equipe');
 		$this->load->model('sumula');
+		$this->load->model('jogo');
 
 		$sumula = new Sumula($id_jogo);
 
@@ -27,6 +29,11 @@ class Sumulas extends CI_Controller {
 	}
 
 	public function falta ($id_jogo) {
+		$this->load->model('jogador');
+		$this->load->model('equipe');
+		$this->load->model('sumula');
+		$this->load->model('jogo');
+
 		$sumula = new Sumula($id_jogo);
 		if(isset($_POST['tempo'])){
 			
@@ -43,11 +50,16 @@ class Sumulas extends CI_Controller {
 	}
 	
 	public function gol ($id_jogo,$id_jogador) {
+		$this->load->model('jogador');
+		$this->load->model('equipe');
+		$this->load->model('sumula');
+		$this->load->model('jogo');
+		
 		$sumula = new Sumula($id_jogo);
 		if(isset($_POST['tempo'])){
 			$tempo = $_POST['tempo'];
 			$jogador_q_fez_o_gol = $id_jogador;
-			$contra = ($_POST['contra']) ? true : false;
+			$contra = isset($_POST['contra']) ? true : false;
 			$sumula->evento_gol($tempo, $jogador_q_fez_o_gol, $contra);
 			redirect(base_url('admin/sumulas/index/'.$id_jogo));
 		}
