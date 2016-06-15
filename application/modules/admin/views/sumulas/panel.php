@@ -76,7 +76,6 @@ $equipes[2] = new Equipe($jogo->equipe_2);
 		      		<?php for ($i=1; $i < 3; $i++): ?>
 			        	<input type="hidden" name="equipe_<?=$i?>" id="input_escalacao_<?=$i?>">
 
-<<<<<<< HEAD
 			        <div class="col-sm-6">
 			        	<img src="<?=$equipes[$i]->escudo?>" height="50" class="pull-right">
 			        	<h3><?=$equipes[$i]->nome?></h3>
@@ -102,7 +101,6 @@ $equipes[2] = new Equipe($jogo->equipe_2);
 											<a href="<?=base_url('admin/sumulas/impedimento/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary btn-xs" title="Impedimeto"><i class="fa fa-warning"></i></a>
 											<a href="<?=base_url('admin/sumulas/substituicao/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary btn-xs" title="Substituição"><i class="fa fa-exchange"></i></a>
 										</td>
-=======
 				        <div class="col-sm-6">
 				        	<img src="<?=$equipes[$i]->escudo?>" height="50" class="pull-right">
 				        	<h3><?=$equipes[$i]->nome?></h3>
@@ -114,7 +112,6 @@ $equipes[2] = new Equipe($jogo->equipe_2);
 										<th>Nome</th>
 										<th>Posição</th>
 										<th><span class="hidden">(actions)</span></th>
->>>>>>> 797a37b4e19444c8f01e0ebd2b83acf2dfaaa386
 									</tr>
 								</thead>
 								<tbody>	
