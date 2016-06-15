@@ -13,7 +13,7 @@ $equipes[2] = new Equipe($jogo->equipe_2);
 	    <div class="panel-heading" role="tab" id="headingOne">
 	      <h4 class="panel-title">
 	        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#escalacao" aria-expanded="true" aria-controls="escalacao">
-	          Escalação
+	          Escalação 
 	        </a>
 	      </h4>
 	    </div>

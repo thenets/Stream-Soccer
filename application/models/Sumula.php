@@ -77,21 +77,116 @@ class Sumula extends SYN_Model {
 	}
 
 	/*
-		Add Evento Gol
+		Eventos Geral
 	*/
-	public function evento_gol () {
-		$gol = new stdClass();
-
-		$gol = [
-			'gol', // Tipo
-			'32/1', // Tempo do jogo exemplo: [35/1] ou [42/2]
-			array(
-				
-			) // Atributos (array)
-		];
-
-		$this->SYN_Log->eventos[] = $gol;
+	public function addEvento ($new_evento) {
+		$this->SYN_Log->eventos[] = $new_evento;
 		$this->updateLog();
 	}
 
+	/*
+		Add Evento Gol
+	*/
+	public function evento_gol ($tempo, $jogador_q_fez_o_gol, $contra=false) {
+		$new_gol = array(
+			'key' 		=> md5(time().' '.microtime()),
+			'tipo' 		=> 'gol', // Tipo
+			'tempo' 	=> $tempo, // Tempo do jogo exemplo: [35/1] ou [42/2]
+			'atributos' => array(
+				'jogador' 	=> $jogador_q_fez_o_gol,
+				'contra' 	=> $contra
+			) // Atributos (array)
+		);
+
+		$this->addEvento($new_gol);
+	}
+
+	/*
+		Add Evento Impedimento
+	*/
+	public function evento_impedimento ($tempo, $jogador_impedido) {
+		$new_impedimento = array(
+			'key' 		=> md5(time().' '.microtime()),
+			'tipo' 		=> 'impedimento', // Tipo
+			'tempo' 	=> $tempo, // Tempo do jogo exemplo: [35/1] ou [42/2]
+			'atributos' => array(
+				'jogador' 	=> $jogador_impedido
+			) // Atributos (array)
+		);
+
+		$this->addEvento($new_impedimento);
+	}
+
+
+	/*
+		Add Evento Substituição
+	*/
+	public function evento_substituicao ($tempo, $jogador_entra, $jogador_sai) {
+		$new_substituicao = array(
+			'key' 		=> md5(time().' '.microtime()),
+			'tipo' 		=> 'substituicao', // Tipo
+			'tempo' 	=> $tempo, // Tempo do jogo exemplo: [35/1] ou [42/2]
+			'atributos' => array(
+				'jogador_entra' 	=> $jogador_entra,
+				'jogador_sai' 		=> $jogador_sai
+			) // Atributos (array)
+		);
+
+		$this->addEvento($new_substituicao);
+	}
+
+
+	/*
+		Add Evento Falta
+	*/
+	public function evento_falta ($tempo, $jogador_cometeu_falta, $jogador_sofreu_falta, $cartao=0) {
+		$new_falta = array(
+			'key' 		=> md5(time().' '.microtime()),
+			'tipo' 		=> 'falta', // Tipo
+			'tempo' 	=> $tempo, // Tempo do jogo exemplo: [35/1] ou [42/2]
+			'atributos' => array(
+				'jogador_cometeu_falta' 	=> $jogador_cometeu_falta,
+				'jogador_sofreu_falta' 		=> $jogador_sofreu_falta
+			) // Atributos (array)
+		);
+
+		if($cartao>0)
+			$this->evento_cartao($tempo, $jogador_cometeu_falta, $cartao);
+
+		$this->addEvento($new_falta);
+	}
+
+
+	/*
+		Add Evento Cartão
+	*/
+	public function evento_cartao ($tempo, $jogador_levou_cartao, $cartao=1) {
+		$new_cartao = array(
+			'key' 		=> md5(time().' '.microtime()),
+			'tipo' 		=> 'cartao', // Tipo
+			'tempo' 	=> $tempo, // Tempo do jogo exemplo: [35/1] ou [42/2]
+			'atributos' => array(
+				'jogador_levou_cartao' 	=> $jogador_levou_cartao,
+				'cartao' 				=> $cartao // 
+			) // Atributos (array)
+		);
+
+		$this->addEvento($new_cartao);
+	}
+
+
+	/*
+		Get Status
+	*/
+	public function get_gols_status () {
+		$status = [];
+		$status['equipe_1'] = 0;
+		$status['equipe_2'] = 0;
+
+		foreach ($this->SYN_Log->eventos as $key => $evento) {
+			# code...
+		}
+
+		return $status;
+	}
 }
