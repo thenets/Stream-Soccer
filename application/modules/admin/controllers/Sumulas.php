@@ -42,11 +42,11 @@ class Sumulas extends CI_Controller {
 		echo "<pre>".print_r($_POST)."</pre>";
 	}
 	
-	public function gol ($id_jogo) {
+	public function gol ($id_jogo,$id_jogador) {
 		$sumula = new Sumula($id_jogo);
 		if(isset($_POST['tempo'])){
 			$tempo = $_POST['tempo'];
-			$jogador_q_fez_o_gol = $_POST['jogador_q_fez_o_gol'];
+			$jogador_q_fez_o_gol = $id_jogador;
 			$contra = ($_POST['contra']) ? true : false;
 			$sumula->evento_gol($tempo, $jogador_q_fez_o_gol, $contra);
 			redirect(base_url('admin/sumulas/index/'.$id_jogo));
