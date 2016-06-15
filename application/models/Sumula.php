@@ -31,7 +31,6 @@ class Sumula extends SYN_Model {
 			$this->scaffold('sumulas', $id_sumula);
 			$this->SYN_Log = json_decode($this->log);
 		}
-
 	}
 
 	public static function getAll () {
@@ -46,6 +45,26 @@ class Sumula extends SYN_Model {
 		return $all;
 	}
 
+	/*
+		Update Log
+
+		Atualiza o log do banco
+	*/
+	public function updateLog () {
+		$this->log = json_encode($this->SYN_Log);
+		$this->save();
+	}
+
+	/*
+		Escalação
+	*/
+	public function addEscalacao ($array_new_escalacao) {
+		if(count($this->SYN_Log) < 3) {
+			$this->SYN_Log->escalacao[] = $array_new_escalacao;
+		}
+
+		$this->updateLog();
+	}
 	public function getEscalacao ($time) { // 0 ou 1
 		$this->load->model('jogador');
 
@@ -57,16 +76,22 @@ class Sumula extends SYN_Model {
 		return $equipe;
 	}
 
-	public function updateLog () {
-		$this->log = json_encode($this->SYN_Log);
-		$this->save();
-	}
+	/*
+		Add Evento Gol
+	*/
+	public function evento_gol () {
+		$gol = new stdClass();
 
-	public function addEscalacao ($array_new_escalacao) {
-		if(count($this->SYN_Log) < 3) {
-			$this->SYN_Log->escalacao[] = $array_new_escalacao;
-		}
+		$gol = [
+			'gol', // Tipo
+			'32/1', // Tempo do jogo exemplo: [35/1] ou [42/2]
+			array(
+				
+			) // Atributos (array)
+		];
 
+		$this->SYN_Log->eventos[] = $gol;
 		$this->updateLog();
 	}
+
 }
