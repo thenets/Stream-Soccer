@@ -1,0 +1,12 @@
+#sumula-panel {
+	.table-hover {
+		cursor: pointer;
+	}
+
+	.equipe_1, .equipe_2 {
+		tr.selected {
+			background: #95bcec;
+		}
+		
+	}
+}

@@ -45,8 +45,15 @@ class Sumula extends SYN_Model {
 		return $all;
 	}
 
-	public function getEscalacao () {
-		return $this->SYN_Events->escalacao;
+	public function getEscalacao ($time) { // 0 ou 1
+		$this->load->model('jogador');
+
+		$equipe = [];
+		foreach ($this->SYN_Events->escalacao[$time] as $key => $jogador) {
+			$equipe[] = new Jogador($jogador);
+		}
+
+		return $equipe;
 	}
 
 	public function updateLog () {
@@ -54,9 +61,9 @@ class Sumula extends SYN_Model {
 		$this->save();
 	}
 
-	public function addEscalacao () {
+	public function addEscalacao ($array_new_escalacao) {
 		if(count($this->SYN_Events) < 3) {
-
+			$this->SYN_Events->escalacao[] = $array_new_escalacao;
 		}
 
 		$this->updateLog();
