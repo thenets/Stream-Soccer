@@ -247,6 +247,9 @@ class Sumula extends SYN_Model {
 			}
 		}
 
+		print_r($status);
+		exit();
+
 		return $status;
 	}
 
@@ -263,8 +266,8 @@ class Sumula extends SYN_Model {
 			if($evento->tipo == 'gol') {
 				$jogador = new Jogador($evento->atributos->jogador);
 				$msgs[] = array(
-					'equipe' 	=> $evento->atributos->equipe;
-					'msg' 		=> "Gol do $jogador!";
+					'equipe' 	=> $evento->atributos->equipe,
+					'msg' 		=> "Gol do $jogador!"
 				);
 			}
 		}
