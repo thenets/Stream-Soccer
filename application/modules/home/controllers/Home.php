@@ -6,12 +6,28 @@ class Home extends CI_Controller {
 		$this->load->model('jogador');
 		$this->load->model('jogo');
 		$this->load->model('sumula');
+		$this->load->model('campeonato');
 
 		$data = [];
-		$data['jogos'] = Jogo::getAll();
+		$data['campeonatos'] = Campeonato::getAll();
 
 		$this->load->view('home/_header');
 		$this->load->view('home/home', $data);
+		$this->load->view('home/_footer');
+	}
+
+	public function campeonato ($id_campeonato) {
+		$this->load->model('equipe');
+		$this->load->model('jogador');
+		$this->load->model('jogo');
+		$this->load->model('sumula');
+		$this->load->model('campeonato');
+
+		$data = [];
+		$data['jogos'] = Jogo::getAllByCampeonato($id_campeonato);
+
+		$this->load->view('home/_header');
+		$this->load->view('home/campeonato', $data);
 		$this->load->view('home/_footer');
 	}
 
@@ -20,6 +36,7 @@ class Home extends CI_Controller {
 		$this->load->model('jogador');
 		$this->load->model('jogo');
 		$this->load->model('sumula');
+		$this->load->model('campeonato');
 
 		$data = [];
 		$data['sumula'] = new Sumula($id_jogo);
