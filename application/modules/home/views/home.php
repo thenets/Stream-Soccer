@@ -4,6 +4,8 @@
 	<div class="mdl-grid">
 		<div class="mdl-cell mdl-cell--1-col"></div>
 		<div class="mdl-cell mdl-cell--5-col">
+			<h3>Jogos em andamento</h3>
+
 			<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" id="eventos-table">
 			  <thead>
 			    <tr>
@@ -31,6 +33,13 @@
 			  </tbody>
 			</table>	
 		</div>
+
+		<div class="mdl-cell mdl-cell--1-col"></div>
+
+		<div class="mdl-cell mdl-cell--5-col">
+			<h3>Campeonato</h3>
+		</div>
+
 		<div class="mdl-cell mdl-cell--2-col"></div>
 	</div>
 
