@@ -54,14 +54,14 @@
         <div class="mdl-layout-spacer"></div>
         <!-- Navigation. We hide it in small screens. -->
         <nav class="mdl-navigation mdl-layout--large-screen-only">
-          <?php $this->load->view('layout/_menu_top') ?>
+          <?php $this->load->view('home/_menu_top') ?>
         </nav>
       </div>
     </header>
     <div class="mdl-layout__drawer">
       <span class="mdl-layout-title">WhoTalk</span>
       <nav class="mdl-navigation">
-        <?php $this->load->view('layout/_menu_top') ?>
+        <?php $this->load->view('home/_menu_top') ?>
       </nav>
     </div>
     <main class="mdl-layout__content">
