@@ -132,7 +132,7 @@ $escalacao[2] = [];
 		    </div>
 		    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
 		      <div class="panel-body">
-		      	<a href="<?=base_url('admin/sumulas/substituicao/'.$sumula->id_sumula.'/'.$jogador->id_jogador)?>" class="btn btn-primary" title="Finalizar"><i class="fa fa-hourglass-end"></i> Finalizar</a>  
+		      	<a href="<?=base_url('admin/sumulas/finalizar/'.$sumula->id_jogo)?>" class="btn btn-primary" title="Finalizar"><i class="fa fa-hourglass-end"></i> Finalizar</a>  
 		      </div>
 		    </div>
 		  </div>

@@ -66,19 +66,69 @@ class Sumulas extends CI_Controller {
 		echo "Erro: <br>";
 		echo "<pre>".print_r($_POST)."</pre>";
 	}
-	public function impedimento () {
+	
+	public function impedimento ($id_jogo,$id_jogador) {
+		$this->load->model('jogador');
+		$this->load->model('equipe');
+		$this->load->model('sumula');
+		$this->load->model('jogo');
 		
-	}
-	public function substituicao () {
-		
+		$sumula = new Sumula($id_jogo);
+		if(isset($_POST['tempo'])){
+			$tempo = $_POST['tempo'];
+			$jogador_impedido = $id_jogador;
+			$sumula->evento_impedimento($tempo,$jogador_impedido);
+			redirect(base_url('admin/sumulas/index/'.$id_jogo));
+		}
+		echo "Erro: <br>";
+		echo "<pre>".print_r($_POST)."</pre>";
 	}
 	
-	public function cartao(){
+	public function substituicao ($id_jogo,$id_jogador) {
+		$this->load->model('jogador');
+		$this->load->model('equipe');
+		$this->load->model('sumula');
+		$this->load->model('jogo');
 		
+		$sumula = new Sumula($id_jogo);
+		if(isset($_POST['tempo'])){
+			$tempo = $_POST['tempo'];
+			$jogador_entra = $_POST['jogador_entra'];
+			$jogador_sai = $id_jogador;
+			$sumula->evento_substituicao($tempo,$jogador_entra,$jogador_sai);
+			redirect(base_url('admin/sumulas/index/'.$id_jogo));
+		}
+		echo "Erro: <br>";
+		echo "<pre>".print_r($_POST)."</pre>";
 	}
 	
-	public function finalizar(){
+	public function cartao($id_jogo,$id_jogador){
+		$this->load->model('jogador');
+		$this->load->model('equipe');
+		$this->load->model('sumula');
+		$this->load->model('jogo');
 		
+		$sumula = new Sumula($id_jogo);
+		if(isset($_POST['tempo'])){
+			$tempo = $_POST['tempo'];
+			$cartao = $_POST['cartao'];
+			$jogador_levou_cartao = $id_jogador;
+			$sumula->evento_cartao($tempo,$jogador_levou_cartao,$cartao);
+			redirect(base_url('admin/sumulas/index/'.$id_jogo));
+		}
+		echo "Erro: <br>";
+		echo "<pre>".print_r($_POST)."</pre>";
+	}
+	
+	public function finalizar($id_jogo){
+		$this->load->model('jogador');
+		$this->load->model('equipe');
+		$this->load->model('sumula');
+		$this->load->model('jogo');
+		$jogo = new Jogo($id_jogo);
+		$jogo->finalizado = true;
+		$jogo->save();
+		redirect(base_url('admin/'));
 	}
 
 }
