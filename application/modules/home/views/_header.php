@@ -14,16 +14,6 @@
     <?php echo SynCompileCSS() ?>
 
     <!-- SynCompiler : JS -->
-    <script src="<?=base_url('public/node_modules/core-js/client/shim.min.js')?>"></script>
-    <script src="<?=base_url('public/node_modules/zone.js/dist/zone.js')?>"></script>
-    <script src="<?=base_url('public/node_modules/reflect-metadata/Reflect.js')?>"></script>
-    <script src="<?=base_url('public/node_modules/rxjs/bundles/Rx.umd.js')?>"></script>
-    <script src="<?=base_url('public/node_modules/@angular/core/core.umd.js')?>"></script>
-    <script src="<?=base_url('public/node_modules/@angular/common/common.umd.js')?>"></script>
-    <script src="<?=base_url('public/node_modules/@angular/compiler/compiler.umd.js')?>"></script>
-    <script src="<?=base_url('public/node_modules/@angular/platform-browser/platform-browser.umd.js')?>"></script>
-    <script src="<?=base_url('public/node_modules/@angular/platform-browser-dynamic/platform-browser-dynamic.umd.js')?>"></script>
-
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <?php echo SynCompileJS() ?>

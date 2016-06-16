@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Máquina: localhost
--- Data de Criação: 15-Jun-2016 às 13:53
+-- Data de Criação: 16-Jun-2016 às 10:27
 -- Versão do servidor: 5.5.49-0ubuntu0.14.04.1
 -- versão do PHP: 5.5.9-1ubuntu4.17
 
@@ -195,14 +195,14 @@ CREATE TABLE IF NOT EXISTS `sumulas` (
   KEY `fk_sumula_equipe1_idx` (`equipe_1`),
   KEY `fk_sumula_equipe2_idx` (`equipe_2`),
   KEY `fk_sumulas_arbitros1_idx` (`id_arbitro`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Extraindo dados da tabela `sumulas`
 --
 
 INSERT INTO `sumulas` (`id_sumula`, `id_jogo`, `log`, `equipe_1`, `equipe_2`, `id_arbitro`) VALUES
-(3, 1, '{"escalacao":[]}', 1, 2, NULL);
+(4, 1, '{"escalacao":[[12,14,15,16,17,19,21,23,24,26,27,28,29,30,31],[1,2,3,4,5,6,7,8,9,10,11,13,18,20,22]],"eventos":[{"key":"194239d42edd21870abab7827e3f0e4a","tipo":"gol","tempo":"4","atributos":{"jogador":"12","contra":false}}]}', 1, 2, NULL);
 
 -- --------------------------------------------------------
 
