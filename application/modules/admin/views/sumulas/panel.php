@@ -25,7 +25,7 @@ $escalacao[2] = [];
 	    <div id="escalacao" class="panel-collapse collapse <?php echo count($sumula->SYN_Log->escalacao) < 3 ? '' : 'in' ?>" role="tabpanel" aria-labelledby="headingOne">
 	      <div class="panel-body row">
 	        <!-- EQUIPES -->
-	        <form action="<?=base_url('admin/sumulas/index/1')?>" method="POST" id="escalacao_form">
+	        <form action="<?=base_url('admin/sumulas/index/'.$jogo->id_jogo)?>" method="POST" id="escalacao_form">
 	      		<?php for ($i=1; $i < 3; $i++): ?>
 		        	<input type="hidden" name="equipe_<?=$i?>" id="input_escalacao_<?=$i?>">
 

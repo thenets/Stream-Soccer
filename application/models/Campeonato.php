@@ -56,18 +56,41 @@ class Campeonato extends SYN_Model {
 
 		// Status de cada equipe
 		$status = [];
-		foreach ($equipes as $key => $equipe) {
+		
+
+		foreach ($equipes as $key => $equipe_id) {
+			// Status
+			$status['equipe_'.$equipe_id] = array('id_equipe' => $equipe_id, 'vitoria' => 0, 'derrota' => 0, 'empate' => 0, 'gols_pro' => 0, 'gols_contra' => 0);
+
 			// Gols a favor
 			foreach ($jogos as $key => $jogo) {
-				print_r($jogo->getGols());
+				if($jogo->equipe_1 == $equipe_id) {
+					$sumula = new Sumula($jogo->id_jogo);
+					$gols = $sumula->get_gols_status();
+					if($gols['equipe_1'] > $gols['equipe_2']) {
+						$status['equipe_'.$equipe_id]['vitoria']++;
+					}
+					else if ($gols['equipe_1'] == $gols['equipe_2']) {
+						$status['equipe_'.$equipe_id]['empate']++;
+					}
+					else {
+						$status['equipe_'.$equipe_id]['derrota']++;	
+					}
+
+					$status['equipe_'.$equipe_id]['gols_pro'] 	+= $gols['equipe_1'];
+					$status['equipe_'.$equipe_id]['gols_contra'] 	+= $gols['equipe_2'];
+				}
 			}
 
 		}
 
 
 		// DEBUG 
-		//print_r($jogos);
-		//exit();
+		//print_r($status);
+		//exit();		
+
+		return $status;
+
 
 	}
 }

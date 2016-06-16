@@ -50,4 +50,18 @@ class Home extends CI_Controller {
 		$this->load->view('home/jogo', $data);
 		$this->load->view('home/_footer');
 	}
+
+	public function ao_vivo ($id_jogo) {
+		$this->load->model('equipe');
+		$this->load->model('jogador');
+		$this->load->model('jogo');
+		$this->load->model('sumula');
+		$this->load->model('campeonato');
+
+		$data = [];
+		$data['jogo'] = new Jogo($id_jogo);
+		$data['sumula'] = new Sumula($id_jogo);		
+
+		$this->load->view('home/ao_vivo', $data);
+	}
 }

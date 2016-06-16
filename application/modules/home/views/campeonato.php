@@ -2,14 +2,12 @@
 
 	<!-- Jogos -->
 	<div class="mdl-grid">
-		<div class="mdl-cell mdl-cell--1-col"></div>
 		<div class="mdl-cell mdl-cell--11-col">
 			<a href="<?=base_url('home')?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
 			  Ver todos os campeonatos
 			</a>
 		</div>
 
-		<div class="mdl-cell mdl-cell--1-col"></div>
 		<div class="mdl-cell mdl-cell--4-col">
 			<h3>Jogos em andamento</h3>
 
@@ -47,7 +45,36 @@
 			<h3>Campeonato</h3>
 
 			<div>
-				<?php print_r($status) ?>
+				<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" id="eventos-table">
+				  <thead>
+				    <tr>
+				      <th class="mdl-data-table__cell--non-numeric">Equipe</th>
+				      <th>Pontos</th>
+				      <th>Vitórias</th>
+				      <th>Empates</th>
+				      <th>Derrotas</th>
+				      <th>Gols Pro</th>
+				      <th>Gols Contra</th>
+				      <th>Saldo</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				  	<?php foreach ($status as $key => $value): $equipe = new Equipe($value['id_equipe']); ?>
+					    <tr>
+					      <td class="mdl-data-table__cell--non-numeric">
+					      	<img height="24" src="<?php echo $equipe->getEscudo() ?>"> <?php echo $equipe->nome ?>
+					      </td>
+					      <td><?=(3*$value['vitoria'])+($value['empate'])?></td>
+					      <td><?=$value['vitoria']?></td>
+					      <td><?=$value['empate']?></td>
+					      <td><?=$value['derrota']?></td>
+					      <td><?=$value['gols_pro']?></td>
+					      <td><?=$value['gols_contra']?></td>
+					      <td><?=($value['gols_pro'] - $value['gols_contra'])?></td>
+					    </tr>
+					<?php endforeach ?>
+				  </tbody>
+				</table>
 			</div>
 		</div>
 
