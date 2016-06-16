@@ -88,11 +88,13 @@ class Sumula extends SYN_Model {
 		Add Evento Gol
 	*/
 	public function evento_gol ($tempo, $jogador_q_fez_o_gol, $contra=false) {
+		$this->load->model('jogador');
 		$new_gol = array(
 			'key' 		=> md5(time().' '.microtime()),
 			'tipo' 		=> 'gol', // Tipo
 			'tempo' 	=> $tempo, // Tempo do jogo exemplo: [35/1] ou [42/2]
 			'atributos' => array(
+				'equipe'	=> (new Jogador($jogador_q_fez_o_gol))->id_equipe,
 				'jogador' 	=> $jogador_q_fez_o_gol,
 				'contra' 	=> $contra
 			) // Atributos (array)
@@ -105,11 +107,13 @@ class Sumula extends SYN_Model {
 		Add Evento Impedimento
 	*/
 	public function evento_impedimento ($tempo, $jogador_impedido) {
+		$this->load->model('jogador');
 		$new_impedimento = array(
 			'key' 		=> md5(time().' '.microtime()),
 			'tipo' 		=> 'impedimento', // Tipo
 			'tempo' 	=> $tempo, // Tempo do jogo exemplo: [35/1] ou [42/2]
 			'atributos' => array(
+				'equipe'	=> (new Jogador($jogador_impedido))->id_equipe,
 				'jogador' 	=> $jogador_impedido
 			) // Atributos (array)
 		);
@@ -122,11 +126,13 @@ class Sumula extends SYN_Model {
 		Add Evento Substituição
 	*/
 	public function evento_substituicao ($tempo, $jogador_entra, $jogador_sai) {
+		$this->load->model('jogador');
 		$new_substituicao = array(
 			'key' 		=> md5(time().' '.microtime()),
 			'tipo' 		=> 'substituicao', // Tipo
 			'tempo' 	=> $tempo, // Tempo do jogo exemplo: [35/1] ou [42/2]
 			'atributos' => array(
+				'equipe'			=> (new Jogador($jogador_sai))->id_equipe,
 				'jogador_entra' 	=> $jogador_entra,
 				'jogador_sai' 		=> $jogador_sai
 			) // Atributos (array)
@@ -140,11 +146,13 @@ class Sumula extends SYN_Model {
 		Add Evento Falta
 	*/
 	public function evento_falta ($tempo, $jogador_cometeu_falta, $jogador_sofreu_falta, $cartao=0) {
+		$this->load->model('jogador');
 		$new_falta = array(
 			'key' 		=> md5(time().' '.microtime()),
 			'tipo' 		=> 'falta', // Tipo
 			'tempo' 	=> $tempo, // Tempo do jogo exemplo: [35/1] ou [42/2]
 			'atributos' => array(
+				'equipe'					=> (new Jogador($jogador_cometeu_falta))->id_equipe,
 				'jogador_cometeu_falta' 	=> $jogador_cometeu_falta,
 				'jogador_sofreu_falta' 		=> $jogador_sofreu_falta
 			) // Atributos (array)
@@ -161,11 +169,13 @@ class Sumula extends SYN_Model {
 		Add Evento Cartão
 	*/
 	public function evento_cartao ($tempo, $jogador_levou_cartao, $cartao=1) {
+		$this->load->model('jogador');
 		$new_cartao = array(
 			'key' 		=> md5(time().' '.microtime()),
 			'tipo' 		=> 'cartao', // Tipo
 			'tempo' 	=> $tempo, // Tempo do jogo exemplo: [35/1] ou [42/2]
 			'atributos' => array(
+				'equipe'				=> (new Jogador($jogador_levou_cartao))->id_equipe,
 				'jogador_levou_cartao' 	=> $jogador_levou_cartao,
 				'cartao' 				=> $cartao // 
 			) // Atributos (array)
@@ -198,7 +208,19 @@ class Sumula extends SYN_Model {
 		$status['equipe_2'] = 0;
 
 		foreach ($this->SYN_Log->eventos as $key => $evento) {
-			# code...
+			if($evento->tipo == 'gol'){
+				// Verifica se é gol contra
+				if($evento->atributos->contra) {
+					// Se for gol contra, add gol para a outra equipe
+					if($evento->atributos->equipe == 1)
+						$status['equipe_2']++;
+					else
+						$status['equipe_1']++;
+				} else {
+					// Se não for contra, incrementa o saldo
+					$status['equipe_'.$evento->atributos->equipe]++;
+				}
+			}
 		}
 
 		return $status;
