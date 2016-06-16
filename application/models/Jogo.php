@@ -12,7 +12,7 @@ class Jogo extends SYN_Model {
 
 		$all = [];
 		foreach ($result as $key => $value) {
-			$all[] = new Jogo($value->id_jogador);
+			$all[] = new Jogo($value->id_jogo);
 		}
 		
 		return $all;
@@ -42,5 +42,12 @@ class Jogo extends SYN_Model {
 		}
 		
 		return $all;
+    }
+
+    public function getResultado(){
+    	$this->load->model('sumula');
+    	$sumula = new Sumula($this->id_jogo);
+
+    	return $sumula->get_gols_status();
     }
 }

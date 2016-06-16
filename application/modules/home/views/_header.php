@@ -42,14 +42,14 @@
     <?php echo SynCompileJS() ?>
 
   </head>
-  <body>
+  <body id="home">
 
   <!-- Always shows a header, even in smaller screens. -->
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <header class="mdl-layout__header mdl-layout__header--transparent">
+    <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
         <!-- Title -->
-        <a href="<?=base_url()?>" class="mdl-layout-title">Stream Soccer</a>
+        <span class="mdl-layout-title">Stream Soccer</span>
         <!-- Add spacer, to align navigation to the right -->
         <div class="mdl-layout-spacer"></div>
         <!-- Navigation. We hide it in small screens. -->
