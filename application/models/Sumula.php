@@ -207,21 +207,35 @@ class Sumula extends SYN_Model {
 		$status['equipe_1'] = 0;
 		$status['equipe_2'] = 0;
 
+		$equipe_id = [];
+		$equipe_id[$this->equipe_1] = 0;
+		$equipe_id[$this->equipe_2] = 0;
+
 		foreach ($this->SYN_Log->eventos as $key => $evento) {
 			if($evento->tipo == 'gol'){
-				// Verifica se é gol contra
-				//if($evento->atributos->contra) {
-				//	// Se for gol contra, add gol para a outra equipe
-				//	if($evento->atributos->equipe == 1)
-				//		$status['equipe_2']++;
-				//	else
-				//		$status['equipe_1']++;
-				//} else {
+				//Verifica se é gol contra
+				/*if($evento->atributos->contra) {
+					// Se for gol contra, add gol para a outra equipe
+					if($equipe_id[$this->equipe_1] == 1)
+						$equipe_id[$this->equipe_2]++;
+					else
+						$equipe_id[$this->equipe_1]++;
+				} else {
 					// Se não for contra, incrementa o saldo
-					$status['equipe_1']++;
-				//}
+					$equipe_id[$this->equipe_1]++;
+				}*/
+
+				if($evento->atributos->equipe == $this->equipe_1) {
+					$equipe_id[$this->equipe_1]++;
+				}
+				if($evento->atributos->equipe == $this->equipe_2) {
+					$equipe_id[$this->equipe_2]++;
+				}
 			}
 		}
+
+		$status['equipe_1'] = $equipe_id[$this->equipe_1];
+		$status['equipe_2'] = $equipe_id[$this->equipe_2];
 
 		return $status;
 	}

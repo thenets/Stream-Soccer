@@ -77,8 +77,28 @@ class Campeonato extends SYN_Model {
 						$status['equipe_'.$equipe_id]['derrota']++;	
 					}
 
-					$status['equipe_'.$equipe_id]['gols_pro'] 	+= $gols['equipe_1'];
+					//print_r($jogo->id_jogo);
+					//print_r($gols);
+
+					$status['equipe_'.$equipe_id]['gols_pro'] 		+= $gols['equipe_1'];
 					$status['equipe_'.$equipe_id]['gols_contra'] 	+= $gols['equipe_2'];
+				}
+
+				if($jogo->equipe_2 == $equipe_id) {
+					$sumula = new Sumula($jogo->id_jogo);
+					$gols = $sumula->get_gols_status();
+					if($gols['equipe_2'] > $gols['equipe_1']) {
+						$status['equipe_'.$equipe_id]['vitoria']++;
+					}
+					else if ($gols['equipe_2'] == $gols['equipe_1']) {
+						$status['equipe_'.$equipe_id]['empate']++;
+					}
+					else {
+						$status['equipe_'.$equipe_id]['derrota']++;	
+					}
+
+					$status['equipe_'.$equipe_id]['gols_pro'] 	+= $gols['equipe_2'];
+					$status['equipe_'.$equipe_id]['gols_contra'] 	+= $gols['equipe_1'];
 				}
 			}
 

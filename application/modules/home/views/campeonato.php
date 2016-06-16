@@ -59,7 +59,18 @@
 				    </tr>
 				  </thead>
 				  <tbody>
-				  	<?php foreach ($status as $key => $value): $equipe = new Equipe($value['id_equipe']); ?>
+				  	<?php 
+					  	// Sort
+				  		$status_sort = [];
+				  		$i = 0;
+				  		foreach ($status as $key => $value) {
+				  			$i++;
+				  			$status_sort[(3*$value['vitoria'])+($value['empate']) + $i*100] = $value;
+
+				  		}
+				  		sort($status_sort);
+
+					  	foreach ($status_sort as $key => $value): $equipe = new Equipe($value['id_equipe']); ?>
 					    <tr>
 					      <td class="mdl-data-table__cell--non-numeric">
 					      	<img height="24" src="<?php echo $equipe->getEscudo() ?>"> <?php echo $equipe->nome ?>
