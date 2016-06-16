@@ -47,6 +47,7 @@ class Jogo extends SYN_Model {
     public function getResultado(){
     	$this->load->model('sumula');
     	$sumula = new Sumula($this->id_jogo);
-    	$sumula->get_gols_status();
+
+    	return $sumula->get_gols_status();
     }
 }
