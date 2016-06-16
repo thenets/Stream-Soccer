@@ -265,9 +265,48 @@ class Sumula extends SYN_Model {
 				$jogador = new Jogador($evento->atributos->jogador);
 				$msgs[] = array(
 					'equipe' 	=> $evento->atributos->equipe,
-					'msg' 		=> "Gol do $jogador!"
+					'msg' 		=> "Gol do $jogador->nome!"
 				);
 			}
+			
+			if($evento->tipo == 'cartao'){
+				$cartao = "";
+				if($evento->atributos->cartao == 1)
+					$cartao = "amarelo";
+				else
+					$cartao = "vermelho";
+					
+				$jogador = new Jogador($evento->atributos->jogador_levou_cartao);
+				$msgs[] = array(
+						'equipe' => $evento->atributos->equipe,
+						'msg'    => "O Jogador $jogador->nome levou um cartão $cartao!"
+					);
+			}
+			
+			if($evento->tipo = 'falta'){
+				$jogador_cometeu = new Jogador($evento->atributos->jogador_cometeu_falta);
+				$jogador_sofreu  = new Jogador($evento->atributos->jogador_sofreu_falta);
+				$msgs[] = array(
+					'equipe'=>$evento->atributos->equipe,
+					'msg'=>"O jogador $jogador_cometeu->nome cometeu falta no jogador $jogador_sofreu->nome"
+					);
+			}
+			
+			if($evento->tipo = "impedimento"){
+				$jogador = new Jogador($evento->atributos->jogador);
+				$msgs[] = array(
+					'equipe'=>$evento->atributos->equipe,
+					'msg'=>"O jogador $jogador->nome estava impedido"
+					);
+			}
+			
+			if($evento->tipo = "substituicao"){
+				$jogador_entra = new Jogador($evento->atributos->jogador_entra);
+				$jogador_sai   = new Jogador($evento->atributos->jogador_sai);
+				
+				$msgs[] = array('equipe'=>$evento->atributos->equipe,'msg'=>"O Jogador $jogador_sai->nome foi substituido pelo jogador $jogador_entra->nome");
+ 			}
+ 			
 		}
 	}
 }
