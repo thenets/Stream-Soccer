@@ -3,7 +3,14 @@
 	<!-- Jogos -->
 	<div class="mdl-grid">
 		<div class="mdl-cell mdl-cell--1-col"></div>
-		<div class="mdl-cell mdl-cell--5-col">
+		<div class="mdl-cell mdl-cell--11-col">
+			<a href="<?=base_url('home')?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
+			  Ver todos os campeonatos
+			</a>
+		</div>
+
+		<div class="mdl-cell mdl-cell--1-col"></div>
+		<div class="mdl-cell mdl-cell--4-col">
 			<h3>Jogos em andamento</h3>
 
 			<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" id="eventos-table">
@@ -36,8 +43,10 @@
 
 		<div class="mdl-cell mdl-cell--1-col"></div>
 
-		<div class="mdl-cell mdl-cell--5-col">
+		<div class="mdl-cell mdl-cell--6-col">
 			<h3>Campeonato</h3>
+
+			<div></div>
 		</div>
 
 		<div class="mdl-cell mdl-cell--2-col"></div>

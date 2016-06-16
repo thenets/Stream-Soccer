@@ -23,8 +23,12 @@ class Home extends CI_Controller {
 		$this->load->model('sumula');
 		$this->load->model('campeonato');
 
+		$campeonato = new Campeonato($id_campeonato);
+
 		$data = [];
 		$data['jogos'] = Jogo::getAllByCampeonato($id_campeonato);
+		$data['id_campeonato'] = $id_campeonato;
+		$data['status'] = $campeonato->getStatusJogos();
 
 		$this->load->view('home/_header');
 		$this->load->view('home/campeonato', $data);

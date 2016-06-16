@@ -50,4 +50,10 @@ class Jogo extends SYN_Model {
 
     	return $sumula->get_gols_status();
     }
+
+    public function getGols() {
+    	$sumula = new Sumula($this->id_jogo);
+
+    	return $sumula->get_gols();	
+    }
 }

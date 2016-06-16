@@ -225,4 +225,48 @@ class Sumula extends SYN_Model {
 
 		return $status;
 	}
+
+
+	/*
+		Get Gols
+	*/
+	public function get_gols () {
+		$status = [];
+		$status['equipe_1'] = [];
+		$status['equipe_2'] = [];
+
+		foreach ($this->SYN_Log->eventos as $key => $evento) {
+			if($evento->tipo == 'gol'){
+				// Verifica se é gol contra
+				if($evento->atributos->contra) {
+					$status['equipe_'.$evento->atributos->equipe][] = array('contra'=>1);
+				} else {
+					// Se não for contra, incrementa o saldo
+					$status['equipe_'.$evento->atributos->equipe][] = array('contra'=>0);
+				}
+			}
+		}
+
+		return $status;
+	}
+
+
+	/*
+		Ao vivo
+	*/
+	public function Ao_vivo () {
+		$this->load->model('jogador');
+
+		$msgs = [];
+
+		foreach ($this->SYN_Log->eventos as $key => $evento) {
+			if($evento->tipo == 'gol') {
+				$jogador = new Jogador($evento->atributos->jogador);
+				$msgs[] = array(
+					'equipe' 	=> $evento->atributos->equipe;
+					'msg' 		=> "Gol do $jogador!";
+				);
+			}
+		}
+	}
 }
