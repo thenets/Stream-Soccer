@@ -18,14 +18,12 @@
 			    </tr>
 			  </thead>
 			  <tbody>
-			    <tr>
-			      <td class="mdl-data-table__cell--non-numeric">Acrylic (Transparent)</td>
-			      <td>25</td>
-			    </tr>
-			    <tr>
-			      <td class="mdl-data-table__cell--non-numeric">Plywood (Birch)</td>
-			      <td>50</td>
-			    </tr>
+			  	<?php foreach ($sumula->Ao_vivo() as $key => $evento): ?>
+				    <tr>
+				      <td class="mdl-data-table__cell--non-numeric">Acrylic (Transparent)</td>
+				      <td>25</td>
+				    </tr>
+				<?php endforeach ?>
 			  </tbody>
 			</table>	
 		</div>

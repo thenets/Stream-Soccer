@@ -35,7 +35,7 @@ class Home extends CI_Controller {
 		$this->load->view('home/_footer');
 	}
 
-	public function jogo () {
+	public function jogo ($id_jogo) {
 		$this->load->model('equipe');
 		$this->load->model('jogador');
 		$this->load->model('jogo');
@@ -43,6 +43,7 @@ class Home extends CI_Controller {
 		$this->load->model('campeonato');
 
 		$data = [];
+		$data['jogo'] = new Jogo($id_jogo);
 		$data['sumula'] = new Sumula($id_jogo);
 
 		$this->load->view('home/_header');

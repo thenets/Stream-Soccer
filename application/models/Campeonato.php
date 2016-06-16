@@ -33,10 +33,18 @@ class Campeonato extends SYN_Model {
 		$this->load->model('sumula');
 		$this->load->model('campeonato');
 
+		/*
+			Estrutura final:
+			array<Equipe> = ('vitorias', 'derrotas', 'empates', 'gols_a_favor', 'gols_contra', 'gols_saldo')
+		*/
+
 		// Jogos do campeonato
 		$jogos = [];
 		$this->db->where('id_campeonato', $this->id_campeonato);
 		$jogos = $this->db->get('jogos')->result();
+		foreach ($jogos as $key => &$jogo) {
+			$jogo = new Jogo($jogo->id_jogo);
+		}
 
 		// Equipes
 		$equipes = [];
@@ -50,13 +58,16 @@ class Campeonato extends SYN_Model {
 		$status = [];
 		foreach ($equipes as $key => $equipe) {
 			// Gols a favor
+			foreach ($jogos as $key => $jogo) {
+				print_r($jogo->getGols());
+			}
 
 		}
 
 
-		// 
-		print_r($equipes);
-		exit();
+		// DEBUG 
+		//print_r($jogos);
+		//exit();
 
 	}
 }

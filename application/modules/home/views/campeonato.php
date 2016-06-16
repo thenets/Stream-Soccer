@@ -31,7 +31,7 @@
 				      </td>
 				      <td><?=$jogo->getResultado()['equipe_1']?> x <?=$jogo->getResultado()['equipe_2']?></td>
 				      <td>
-				      	<a href="<?=base_url('home/'.$jogo->id_jogo)?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+				      	<a href="<?=base_url('home/jogo/'.$jogo->id_jogo)?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
 						  Assistir
 						</a>
 				      </td>
@@ -46,7 +46,9 @@
 		<div class="mdl-cell mdl-cell--6-col">
 			<h3>Campeonato</h3>
 
-			<div></div>
+			<div>
+				<?php print_r($status) ?>
+			</div>
 		</div>
 
 		<div class="mdl-cell mdl-cell--2-col"></div>

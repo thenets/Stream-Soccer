@@ -247,8 +247,6 @@ class Sumula extends SYN_Model {
 			}
 		}
 
-		print_r($status);
-		exit();
 
 		return $status;
 	}
