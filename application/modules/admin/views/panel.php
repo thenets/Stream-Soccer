@@ -25,7 +25,7 @@
 			<?php foreach ($jogosEmAndamento as $key => $value): ?>
 				<tr>
 					<th><?php echo $value->id_jogo ?></th>
-					<th><img src="<?=(new Equipe($value->equipe_1))->escudo?>" title="<?=(new Equipe($value->equipe_1))->nome?>" width='20'> x <img src="<?=(new Equipe($value->equipe_2))->escudo?>" title="<?=(new Equipe($value->equipe_2))->nome?>" width='20'></th>
+					<th><img src="<?=(new Equipe($value->equipe_1))->getEscudo()?>" title="<?=(new Equipe($value->equipe_1))->nome?>" width='20'> x <img src="<?=(new Equipe($value->equipe_2))->getEscudo()?>" title="<?=(new Equipe($value->equipe_2))->nome?>" width='20'></th>
 					<td><?php echo $value->hora_inicio ?></td>
 					<td><?php echo $value->hora_fim ?></td>
 					<td><?php echo $value->data ?></td>

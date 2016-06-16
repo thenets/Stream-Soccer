@@ -30,7 +30,7 @@ $escalacao[2] = [];
 		        	<input type="hidden" name="equipe_<?=$i?>" id="input_escalacao_<?=$i?>">
 
 			        <div class="col-sm-6">
-			        	<img src="<?=$equipes[$i]->escudo?>" height="50" class="pull-right">
+			        	<img src="<?=$equipes[$i]->getEscudo()?>" height="50" class="pull-right">
 			        	<h3><?=$equipes[$i]->nome?></h3>
 			        	<hr>
 						<table class="table table-striped table-bordered table-hover equipe_<?=$i?>">
@@ -83,7 +83,7 @@ $escalacao[2] = [];
 			        	<input type="hidden" name="equipe_<?=$i?>" id="input_escalacao_<?=$i?>">
 
 				        <div class="col-sm-6">
-				        	<img src="<?=$equipes[$i]->escudo?>" height="50" class="pull-right">
+				        	<img src="<?=$equipes[$i]->getEscudo()?>" height="50" class="pull-right">
 				        	<h3><?=$equipes[$i]->nome?></h3>
 				        	<hr>
 							<table class="table table-striped table-bordered equipe_<?=$i?>">

@@ -4,8 +4,10 @@ class Equipe extends SYN_Model {
 	public function __construct ($id=0) {
 		// @SYN_Model::scaffold ($table_name, $id, <optional : className>)
 		$this->scaffold('equipes', $id);
+	}
 
-		$this->escudo = base_url('public/img/equipes/'.$id.'.png');
+	public function getEscudo() {
+		return base_url('public/img/equipes/'.$this->id_equipe.'.png');
 	}
 
 	public static function getAll () {
