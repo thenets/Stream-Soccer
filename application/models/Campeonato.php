@@ -66,7 +66,9 @@ class Campeonato extends SYN_Model {
 			foreach ($jogos as $key => $jogo) {
 				if($jogo->equipe_1 == $equipe_id) {
 					$sumula = new Sumula($jogo->id_jogo);
+					//$gols = $sumula->get_gols_status();
 					$gols = $sumula->get_gols_status();
+
 					if($gols['equipe_1'] > $gols['equipe_2']) {
 						$status['equipe_'.$equipe_id]['vitoria']++;
 					}

@@ -2,10 +2,10 @@
 -- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
--- Máquina: 127.0.0.1
--- Data de Criação: 16-Jun-2016 às 15:12
--- Versão do servidor: 5.5.47-0ubuntu0.14.04.1
--- versão do PHP: 5.5.9-1ubuntu4.14
+-- Máquina: localhost
+-- Data de Criação: 17-Jun-2016 às 09:49
+-- Versão do servidor: 5.5.49-0ubuntu0.14.04.1
+-- versão do PHP: 5.5.9-1ubuntu4.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -291,11 +291,11 @@ CREATE TABLE IF NOT EXISTS `jogos` (
 
 INSERT INTO `jogos` (`id_jogo`, `id_campeonato`, `hora_inicio`, `hora_fim`, `data`, `finalizado`, `campo_nome`, `campo_dimensao`, `equipe_1`, `equipe_2`) VALUES
 (1, 1, NULL, NULL, NULL, 0, 'Mineirão', '90x120', 1, 2),
-(5, 2, '18:30:00', '22:00:00', '2016-05-15', 0, 'Beira Rio', '115x125', 3, 4),
-(6, 2, '16:00:00', '22:00:00', '2016-05-22', 0, 'Murumbi', '115x125', 1, 3),
-(7, 2, '16:00:00', '22:00:00', '2016-05-26', 0, 'Beira Rio', '115x125', 3, 5),
-(8, 2, '18:30:00', '22:30:00', '2016-05-29', 0, 'Vila Belmiro', '110x120', 6, 3),
-(9, 2, '19:30:00', '23:30:00', '2016-06-01', 0, 'Beira Rio', '115x125', 3, 7);
+(5, 2, '18:30:00', '22:00:00', '2016-05-15', 1, 'Beira Rio', '115x125', 3, 4),
+(6, 2, '16:00:00', '22:00:00', '2016-05-22', 1, 'Murumbi', '115x125', 1, 3),
+(7, 2, '16:00:00', '22:00:00', '2016-05-26', 1, 'Beira Rio', '115x125', 3, 5),
+(8, 2, '18:30:00', '22:30:00', '2016-05-29', 1, 'Vila Belmiro', '110x120', 6, 3),
+(9, 2, '19:30:00', '23:30:00', '2016-06-01', 1, 'Beira Rio', '115x125', 3, 7);
 
 -- --------------------------------------------------------
 
@@ -316,14 +316,14 @@ CREATE TABLE IF NOT EXISTS `sumulas` (
   KEY `fk_sumula_equipe1_idx` (`equipe_1`),
   KEY `fk_sumula_equipe2_idx` (`equipe_2`),
   KEY `fk_sumulas_arbitros1_idx` (`id_arbitro`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Extraindo dados da tabela `sumulas`
 --
 
 INSERT INTO `sumulas` (`id_sumula`, `id_jogo`, `log`, `equipe_1`, `equipe_2`, `id_arbitro`) VALUES
-(4, 1, '{"escalacao":[[12,14,15,16,17,19,21,23,24,26,27,28,29,30,31],[1,2,3,4,5,6,7,8,9,10,11,13,18,20,22]],"eventos":[{"key":"194239d42edd21870abab7827e3f0e4a","tipo":"gol","tempo":"4","atributos":{"jogador":"12","contra":false}}]}', 1, 2, NULL);
+(1, 5, '{"escalacao":[],"eventos":[]}', 3, 4, NULL);
 
 -- --------------------------------------------------------
 
